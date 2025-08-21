@@ -1,0 +1,20 @@
+{
+  "name": "simple-url-shorter",
+  "type": "module",
+  "scripts": {
+    "dev": "dotenv -- tsc-watch --onsuccess \"node dist/server.js\"",
+    "build": "tsc",
+    "start": "dotenv -- node dist/server.js"
+  },
+  "dependencies": {
+    "express": "^5.1.0",
+    "mongoose": "^8.17.2"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.3",
+    "@types/mongoose": "^5.11.96",
+    "@types/node": "^24.3.0",
+    "dotenv-cli": "^10.0.0",
+    "tsc-watch": "^7.1.1"
+  }
+}
