@@ -2,7 +2,7 @@ import { Schema, model } from "mongoose";
 
 const urlSchema = new Schema(
   {
-    shortedUrlId: {
+    shortUrlId: {
       type: String,
       unique: true,
       required: true,
