@@ -6,6 +6,6 @@ const router = Router();
 
 router.post("/", urlController.shortUrl);
 
-router.get("/:shortedUrl", urlController.redirectOriginalUrl);
+router.get("/:shortUrlId", urlController.redirectUrl);
 
 export default router;

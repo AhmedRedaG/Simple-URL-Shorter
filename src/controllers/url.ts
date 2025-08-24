@@ -47,7 +47,7 @@ export const shortUrl = async (req: Request, res: Response) => {
   );
 };
 
-export const redirectOriginalUrl = async (req: Request, res: Response) => {
+export const redirectUrl = async (req: Request, res: Response) => {
   const { shortUrlId } = req.params;
 
   const url = await Url.findOneAndUpdate(
