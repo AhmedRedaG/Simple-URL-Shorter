@@ -47,4 +47,16 @@ export const shortUrl = async (req: Request, res: Response) => {
   );
 };
 
-export const redirectOriginalUrl = (req: Request, res: Response) => {};
+export const redirectOriginalUrl = async (req: Request, res: Response) => {
+  const { shortUrlId } = req.params;
+
+  const url = await Url.findOneAndUpdate(
+    { shortUrlId },
+    { $inc: { visits: 1 } }
+  );
+  if (!url) {
+    throw new AppError("Url not found", 404);
+  }
+
+  res.redirect(301, url.originalUrl);
+};
