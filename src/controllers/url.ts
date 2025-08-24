@@ -60,3 +60,16 @@ export const redirectUrl = async (req: Request, res: Response) => {
 
   res.redirect(301, url.originalUrl);
 };
+
+export const urlInfo = async (req: Request, res: Response) => {
+  const { shortUrlId } = req.params;
+
+  const url = await Url.findOne({ shortUrlId }, { _id: 0, __v: 0 });
+  if (!url) {
+    throw new AppError("Url not found", 404);
+  }
+
+  const shortUrl: string = BASE_URL + shortUrlId;
+
+  res.jsend.success({ urlInfo: { shortUrl, ...url.toJSON() } });
+};

@@ -8,4 +8,6 @@ router.post("/", urlController.shortUrl);
 
 router.get("/:shortUrlId", urlController.redirectUrl);
 
+router.get("/:shortUrlId/info", urlController.urlInfo);
+
 export default router;
