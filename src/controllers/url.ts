@@ -22,14 +22,14 @@ export const shortUrl = async (req: Request, res: Response) => {
     throw new AppError("Invalid url format", 422);
   }
 
-  let shortedUrlId: string = "";
+  let shortUrlId: string = "";
   let idFound: boolean = false;
   for (let i = 0; i < URL_ID_RETRIES; i++) {
-    shortedUrlId = randomBytes(URL_ID_LENGTH).toString("base64url");
+    shortUrlId = randomBytes(URL_ID_LENGTH).toString("base64url");
 
-    const oldUrlId: object | null = await Url.findOne({ shortedUrlId });
+    const oldUrlId: object | null = await Url.findOne({ shortUrlId });
     if (!oldUrlId) {
-      await Url.create({ originalUrl, shortedUrlId });
+      await Url.create({ originalUrl, shortUrlId });
       idFound = true;
       break;
     }
@@ -39,10 +39,10 @@ export const shortUrl = async (req: Request, res: Response) => {
     throw new Error("Failed to generate unique short url");
   }
 
-  const shortedUrl: string = BASE_URL + shortedUrlId;
+  const shortUrl: string = BASE_URL + shortUrlId;
 
   res.jsend.success(
-    { message: "Short URL created successfully", shortedUrl },
+    { message: "Short URL created successfully", shortUrl },
     201
   );
 };
