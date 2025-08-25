@@ -3,7 +3,7 @@ import { Request, Response } from "express";
 import AppError from "../utils/appError.js";
 
 const notFoundError = (req: Request, res: Response) => {
-  res.jsend.fail({ message: "Not found" });
+  res.jsend.fail({ message: "Not found" }, 404);
 };
 
 const unexpectedError = (
